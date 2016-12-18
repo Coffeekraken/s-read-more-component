@@ -1,0 +1,55 @@
+{
+	"name": "interactive-demo",
+	"version": "0.0.1",
+	"description": "Webcomponent wrapper for the codemirror editor library.",
+	"main": "dist/index.js",
+	"scripts": {
+		"dist": "npm run dist.build",
+		"dist.build": "npm run dist.build.js",
+		"dist.build.js": "babel src -d dist",
+		"dist.watch": "concurrently --kill-others \"npm run dist.watch.js\"",
+		"dist.watch.js": "nodemon -w src -e js -x \"npm run dist\"",
+		"demo": "npm run demo.build && open ./demo/index.html",
+		"demo.build": "npm run demo.build.css && npm run demo.build.js",
+		"demo.build.css": "node-sass demo/src/sass/style.scss demo/dist/css/style.css",
+		"demo.build.js": "npm run dist.build.js && webpack",
+		"demo.watch": "concurrently --kill-others \"npm run demo.watch.css\" \"npm run demo.watch.js\"",
+		"demo.watch.css": "nodemon -w demo/src -w src -e scss -x \"npm run demo.build.css\"",
+		"demo.watch.js": "nodemon -w demo/src -w src -e js -x \"npm run demo.build.js\"",
+		"test": "node_modules/coffeekraken-testing-stack/run"
+	},
+	"keywords": [
+		"webcomponent",
+		"sugar",
+		"editor",
+		"codemirror",
+		"coffee",
+		"kraken",
+		"coffeekraken"
+	],
+	"author": "Coffeekraken <hello@coffeekraken.io>",
+	"license": "MIT",
+	"dependencies": {
+		"clipboard": "^1.5.16",
+		"codemirror": "^5.21.0",
+		"coffeekraken-sugar": "git+https://git@github.com/Coffeekraken/sugar.git#release/0.0.1",
+		"raw-loader": "^0.5.1"
+	},
+	"devDependencies": {
+		"babel-cli": "^6.18.0",
+		"babel-core": "^6.20.0",
+		"babel-loader": "^6.2.9",
+		"babel-plugin-transform-remove-strict-mode": "0.0.2",
+		"babel-polyfill": "^6.20.0",
+		"babel-preset-es2015": "^6.18.0",
+		"babel-preset-stage-0": "^6.16.0",
+		"chai": "^3.5.0",
+		"coffeekraken-testing-stack": "git+https://github.com/Coffeekraken/testing-stack.git",
+		"concurrently": "^3.1.0",
+		"node-sass": "^4.0.0",
+		"nodemon": "^1.11.0",
+		"open": "0.0.5",
+		"webcomponents.js": "^0.7.23",
+		"webpack": "^1.14.0"
+	}
+}
