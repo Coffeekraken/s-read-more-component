@@ -1,5 +1,5 @@
 {
-	"name": "s-codemirror-component",
+	"name": "coffeekraken-s-codemirror-component",
 	"version": "0.0.1",
 	"description": "Webcomponent wrapper for the codemirror editor library.",
 	"main": "dist/index.js",
