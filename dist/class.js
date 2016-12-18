@@ -2,10 +2,10 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _SCodemirrorComponent = require('./js/SCodemirrorComponent');
+var _SReadMoreComponent = require('./js/SReadMoreComponent');
 
-var _SCodemirrorComponent2 = _interopRequireDefault(_SCodemirrorComponent);
+var _SReadMoreComponent2 = _interopRequireDefault(_SReadMoreComponent);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-exports.default = _SCodemirrorComponent2.default;
+exports.default = _SReadMoreComponent2.default;

@@ -1,2 +1,2 @@
-import SCodemirrorComponent from './js/SCodemirrorComponent';
-export default SCodemirrorComponent.define('s-codemirror', SCodemirrorComponent);
+import SReadMoreComponent from './js/SReadMoreComponent';
+export default SReadMoreComponent.define('s-read-more', SReadMoreComponent);
