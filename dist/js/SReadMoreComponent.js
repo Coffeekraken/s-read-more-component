@@ -279,13 +279,13 @@ var SReadMoreComponent = function (_SWebComponent) {
 			return this.isActive();
 		}
 	}], [{
-		key: 'css',
+		key: 'defaultCss',
 
 
 		/**
    * Css
    */
-		value: function css(componentName, componentNameDash) {
+		value: function defaultCss(componentName, componentNameDash) {
 			return '\n\t\t\t' + componentNameDash + ' {\n\t\t\t\toverflow : hidden;\n\t\t\t\tdisplay : block;\n\t\t\t}\n\t\t';
 		}
 	}, {

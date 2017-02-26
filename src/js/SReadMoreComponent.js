@@ -40,7 +40,7 @@ export default class SReadMoreComponent extends SWebComponent {
 	/**
 	 * Css
 	 */
-	static css(componentName, componentNameDash) {
+	static defaultCss(componentName, componentNameDash) {
 		return `
 			${componentNameDash} {
 				overflow : hidden;
