@@ -34,20 +34,48 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
+/**
+ * @name 		SReadMoreComponent
+ * @extends 	SWebComponent
+ * Simple tag to easly crop and reveal some contents. The display style is totaly up to you...
+ *
+ * @styleguide 		Blocks / Read more
+ * @example 		html
+ * <style>
+ * 	s-read-more {
+ * 		max-height: 150px;
+ * 		width: 400px;
+ * 	}
+ * 	s-read-more:after {
+ * 		content: attr(more);
+ * 	}
+ * 	s-read-more[active]:after {
+ * 		content: attr(less);
+ * 	}
+ * </style>
+ * <s-read-more more="More..." less="Less...">
+ * 	<p class="p m-b">
+ * 		Cras nisl diam, vestibulum sit amet vehicula blandit, ullamcorper sit amet ex. Aliquam pellentesque mauris magna, ac imperdiet arcu vehicula ac. Sed viverra risus in neque ullamcorper aliquam. Phasellus pretium.
+ * 	</p>
+ * 	<p class="p m-b">
+ * 		Cras nisl diam, vestibulum sit amet vehicula blandit, ullamcorper sit amet ex. Aliquam pellentesque mauris magna, ac imperdiet arcu vehicula ac. Sed viverra risus in neque ullamcorper aliquam. Phasellus pretium.
+ * 	</p>
+ * 	<p class="p m-b">
+ * 		Cras nisl diam, vestibulum sit amet vehicula blandit, ullamcorper sit amet ex. Aliquam pellentesque mauris magna, ac imperdiet arcu vehicula ac. Sed viverra risus in neque ullamcorper aliquam. Phasellus pretium.
+ * 	</p>
+ * </s-read-more>
+ *
+ * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+ */
+
 var SReadMoreComponent = function (_SWebComponent) {
 	_inherits(SReadMoreComponent, _SWebComponent);
 
 	function SReadMoreComponent() {
 		_classCallCheck(this, SReadMoreComponent);
 
-		return _possibleConstructorReturn(this, (SReadMoreComponent.__proto__ || Object.getPrototypeOf(SReadMoreComponent)).call(this));
+		return _possibleConstructorReturn(this, (SReadMoreComponent.__proto__ || Object.getPrototypeOf(SReadMoreComponent)).apply(this, arguments));
 	}
-
-	/**
-  * Default props
-  * @definition 		SWebComponent.getDefaultProps
-  */
-
 
 	_createClass(SReadMoreComponent, [{
 		key: 'componentWillMount',
@@ -56,6 +84,7 @@ var SReadMoreComponent = function (_SWebComponent) {
 		/**
    * Component will mount
    * @definition 		SWebComponent.componentWillMount
+   * @protected
    */
 		value: function componentWillMount() {
 			_get(SReadMoreComponent.prototype.__proto__ || Object.getPrototypeOf(SReadMoreComponent.prototype), 'componentWillMount', this).call(this);
@@ -65,6 +94,7 @@ var SReadMoreComponent = function (_SWebComponent) {
 		/**
    * Mount component
    * @definition 		SWebComponent.componentMount
+   * @protected
    */
 
 	}, {
@@ -88,6 +118,10 @@ var SReadMoreComponent = function (_SWebComponent) {
 				_this2._updateTargetedAndOriginalHeight();
 				_this2._checkThreshold();
 			});
+			window.addEventListener('resize', function (e) {
+				_this2._updateTargetedAndOriginalHeight();
+				_this2._checkThreshold();
+			});
 
 			// listen for content mutation
 			this._listenMutations();
@@ -96,6 +130,7 @@ var SReadMoreComponent = function (_SWebComponent) {
 		/**
    * Component unmount
    * @definition 		SWebComponent.componentUnmount
+   * @protected
    */
 
 	}, {
@@ -110,6 +145,7 @@ var SReadMoreComponent = function (_SWebComponent) {
 		/**
    * Component will receive prop
    * @definition 		SWebComponent.componentWillReceiveProp
+   * @protected
    */
 
 	}, {
@@ -210,19 +246,19 @@ var SReadMoreComponent = function (_SWebComponent) {
 				this.setProp('disabled', false);
 			}
 		}
-	}, {
-		key: 'activate',
-
 
 		/**
-   * Activate
+   * Activate the read more
    */
+
+	}, {
+		key: 'activate',
 		value: function activate() {
 			this.setProp('active', true);
 		}
 
 		/**
-   * Unactivate
+   * Unactivate the read more
    */
 
 	}, {
@@ -233,6 +269,7 @@ var SReadMoreComponent = function (_SWebComponent) {
 
 		/**
    * Return if the read more is activate or not
+   * @return 		{Boolean} 		True if is active, false if not
    */
 
 	}, {
@@ -244,6 +281,7 @@ var SReadMoreComponent = function (_SWebComponent) {
 		/**
    * Render the component
    * @definition 		SWebComponent.render
+   * @protected
    */
 
 	}, {
@@ -270,26 +308,26 @@ var SReadMoreComponent = function (_SWebComponent) {
 				});
 			}
 		}
-	}, {
-		key: 'active',
-		set: function set(value) {
-			if (value) this.activate();else this.unactivate();
-		},
-		get: function get() {
-			return this.isActive();
-		}
 	}], [{
 		key: 'defaultCss',
 
 
 		/**
    * Css
+   * @protected
    */
 		value: function defaultCss(componentName, componentNameDash) {
 			return '\n\t\t\t' + componentNameDash + ' {\n\t\t\t\toverflow : hidden;\n\t\t\t\tdisplay : block;\n\t\t\t}\n\t\t';
 		}
 	}, {
 		key: 'defaultProps',
+
+
+		/**
+   * Default props
+   * @definition 		SWebComponent.getDefaultProps
+   * @protected
+   */
 		get: function get() {
 			return {
 				/**
@@ -300,14 +338,36 @@ var SReadMoreComponent = function (_SWebComponent) {
      */
 				threshold: 0,
 
+				/**
+     * Specify if the component is active (opened) or not
+     * @prop
+     * @type	{Boolean}
+     */
 				active: false,
 
+				/**
+     * Specify if the component is disabled. This can be added by the component itself if the "threshold" property is used...
+     * @prop
+     * @type 	{Boolean}
+     */
 				disabled: false,
 
+				/**
+     * Specify the height to target. If not specified, will try to get the max-height property.
+     * @prop
+     * @type 	{Number}
+     */
 				height: null
 
 			};
 		}
+
+		/**
+   * Physical props
+   * @definition 		SWebComponent.physicalProps
+   * @protected
+   */
+
 	}, {
 		key: 'physicalProps',
 		get: function get() {

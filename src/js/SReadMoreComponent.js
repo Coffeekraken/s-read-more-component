@@ -4,15 +4,46 @@ import __getStyleProperty from 'coffeekraken-sugar/js/dom/getStyleProperty'
 import __style from 'coffeekraken-sugar/js/dom/style'
 import __matches from 'coffeekraken-sugar/js/dom/matches'
 
-export default class SReadMoreComponent extends SWebComponent {
+/**
+ * @name 		SReadMoreComponent
+ * @extends 	SWebComponent
+ * Simple tag to easly crop and reveal some contents. The display style is totaly up to you...
+ *
+ * @styleguide 		Blocks / Read more
+ * @example 		html
+ * <style>
+ * 	s-read-more {
+ * 		max-height: 150px;
+ * 		width: 400px;
+ * 	}
+ * 	s-read-more:after {
+ * 		content: attr(more);
+ * 	}
+ * 	s-read-more[active]:after {
+ * 		content: attr(less);
+ * 	}
+ * </style>
+ * <s-read-more more="More..." less="Less...">
+ * 	<p class="p m-b">
+ * 		Cras nisl diam, vestibulum sit amet vehicula blandit, ullamcorper sit amet ex. Aliquam pellentesque mauris magna, ac imperdiet arcu vehicula ac. Sed viverra risus in neque ullamcorper aliquam. Phasellus pretium.
+ * 	</p>
+ * 	<p class="p m-b">
+ * 		Cras nisl diam, vestibulum sit amet vehicula blandit, ullamcorper sit amet ex. Aliquam pellentesque mauris magna, ac imperdiet arcu vehicula ac. Sed viverra risus in neque ullamcorper aliquam. Phasellus pretium.
+ * 	</p>
+ * 	<p class="p m-b">
+ * 		Cras nisl diam, vestibulum sit amet vehicula blandit, ullamcorper sit amet ex. Aliquam pellentesque mauris magna, ac imperdiet arcu vehicula ac. Sed viverra risus in neque ullamcorper aliquam. Phasellus pretium.
+ * 	</p>
+ * </s-read-more>
+ *
+ * @author 		Olivier Bossel <olivier.bossel@gmail.com>
+ */
 
-	constructor() {
-		super();
-	}
+export default class SReadMoreComponent extends SWebComponent {
 
 	/**
 	 * Default props
 	 * @definition 		SWebComponent.getDefaultProps
+	 * @protected
 	 */
 	static get defaultProps() {
 		return {
@@ -24,21 +55,42 @@ export default class SReadMoreComponent extends SWebComponent {
 			 */
 			threshold : 0,
 
+			/**
+			 * Specify if the component is active (opened) or not
+			 * @prop
+			 * @type	{Boolean}
+			 */
 			active : false,
 
+			/**
+			 * Specify if the component is disabled. This can be added by the component itself if the "threshold" property is used...
+			 * @prop
+			 * @type 	{Boolean}
+			 */
 			disabled : false,
 
+			/**
+			 * Specify the height to target. If not specified, will try to get the max-height property.
+			 * @prop
+			 * @type 	{Number}
+			 */
 			height : null
 
 		};
 	}
 
+	/**
+	 * Physical props
+	 * @definition 		SWebComponent.physicalProps
+	 * @protected
+	 */
 	static get physicalProps() {
 		return ['disabled','active'];
 	}
 
 	/**
 	 * Css
+	 * @protected
 	 */
 	static defaultCss(componentName, componentNameDash) {
 		return `
@@ -52,6 +104,7 @@ export default class SReadMoreComponent extends SWebComponent {
 	/**
 	 * Component will mount
 	 * @definition 		SWebComponent.componentWillMount
+	 * @protected
 	 */
 	componentWillMount() {
 		super.componentWillMount();
@@ -61,6 +114,7 @@ export default class SReadMoreComponent extends SWebComponent {
 	/**
 	 * Mount component
 	 * @definition 		SWebComponent.componentMount
+	 * @protected
 	 */
 	componentMount() {
 		super.componentMount();
@@ -79,6 +133,10 @@ export default class SReadMoreComponent extends SWebComponent {
 			this._updateTargetedAndOriginalHeight();
 			this._checkThreshold();
 		});
+		window.addEventListener(`resize`, (e) => {
+			this._updateTargetedAndOriginalHeight();
+			this._checkThreshold();
+		});
 
 		// listen for content mutation
 		this._listenMutations();
@@ -87,6 +145,7 @@ export default class SReadMoreComponent extends SWebComponent {
 	/**
 	 * Component unmount
 	 * @definition 		SWebComponent.componentUnmount
+	 * @protected
 	 */
 	componentUnmount() {
 		super.componentUnmount();
@@ -98,6 +157,7 @@ export default class SReadMoreComponent extends SWebComponent {
 	/**
 	 * Component will receive prop
 	 * @definition 		SWebComponent.componentWillReceiveProp
+	 * @protected
 	 */
 	componentWillReceiveProp(name, newVal, oldVal) {
 		switch(name) {
@@ -183,31 +243,30 @@ export default class SReadMoreComponent extends SWebComponent {
 		}
 	}
 
-	set active(value) {
-		if (value) this.activate();
-		else this.unactivate();
-	}
-
-	get active() {
-		return this.isActive();
-	}
-
 	/**
-	 * Activate
+	 * Activate the read more
 	 */
 	activate() {
 		this.setProp('active', true);
 	}
 
 	/**
-	 * Unactivate
+	 * Unactivate the read more
 	 */
 	unactivate() {
 		this.setProp('active', false);
 	}
 
 	/**
+	 * Toggle the readmore
+	 */
+	toggle() {
+		this.props.active = ! this.props.active;
+	}
+
+	/**
 	 * Return if the read more is activate or not
+	 * @return 		{Boolean} 		True if is active, false if not
 	 */
 	isActive() {
 		return this.props.active;
@@ -216,6 +275,7 @@ export default class SReadMoreComponent extends SWebComponent {
 	/**
 	 * Render the component
 	 * @definition 		SWebComponent.render
+	 * @protected
 	 */
 	render() {
 		if ( ! this.props.disabled) {
