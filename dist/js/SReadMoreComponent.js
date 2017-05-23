@@ -22,10 +22,6 @@ var _style = require('coffeekraken-sugar/js/dom/style');
 
 var _style2 = _interopRequireDefault(_style);
 
-var _matches = require('coffeekraken-sugar/js/dom/matches');
-
-var _matches2 = _interopRequireDefault(_matches);
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -39,7 +35,6 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
  * @extends 	SWebComponent
  * Simple tag to easly crop and reveal some contents. The display style is totaly up to you...
  *
- * @styleguide 		Blocks / Read more
  * @example 		html
  * <style>
  * 	s-read-more {
@@ -265,6 +260,16 @@ var SReadMoreComponent = function (_SWebComponent) {
 		key: 'unactivate',
 		value: function unactivate() {
 			this.setProp('active', false);
+		}
+
+		/**
+   * Toggle the readmore
+   */
+
+	}, {
+		key: 'toggle',
+		value: function toggle() {
+			this.props.active = !this.props.active;
 		}
 
 		/**

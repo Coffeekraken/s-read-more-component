@@ -2,14 +2,12 @@ import SWebComponent from 'coffeekraken-sugar/js/core/SWebComponent'
 import __realHeight from 'coffeekraken-sugar/js/dom/realHeight'
 import __getStyleProperty from 'coffeekraken-sugar/js/dom/getStyleProperty'
 import __style from 'coffeekraken-sugar/js/dom/style'
-import __matches from 'coffeekraken-sugar/js/dom/matches'
 
 /**
  * @name 		SReadMoreComponent
  * @extends 	SWebComponent
  * Simple tag to easly crop and reveal some contents. The display style is totaly up to you...
  *
- * @styleguide 		Blocks / Read more
  * @example 		html
  * <style>
  * 	s-read-more {
