@@ -1,6 +1,6 @@
 {
 	"name": "coffeekraken-s-read-more-component",
-	"version": "0.0.2",
+	"version": "1.0.0",
 	"description": "Simple tag to easly crop and reveal some contents. The display style is totaly up to you...",
 	"main": "dist/index.js",
   "homepage": "http://coffeekraken.io",
@@ -46,7 +46,7 @@
   ],
 	"license": "MIT",
   "dependencies": {
-    "coffeekraken-sugar": "^0.0.2"
+    "coffeekraken-sugar": "^1.0.0"
   },
   "devDependencies": {
     "babel-cli": "^6.18.0",
