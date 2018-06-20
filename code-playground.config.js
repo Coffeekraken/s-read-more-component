@@ -21,38 +21,48 @@ module.exports = {
 		html : {
 			language : 'html',
 			data : `
-				<div class="container">
-					<h1 class="h1 m-b-small">
-						Coffeekraken s-read-more-component
-					</h1>
-					<p class="p m-b-bigger">
-						Simple tag to easly crop and reveal some contents. The display style is totaly up to you... <br>
-						<strong class="strong">Resize your window if you don't see the effect...</strong>
+				<h1 class="h3 m-b-small">
+					Coffeekraken s-read-more-component
+				</h1>
+				<p class="p m-b-bigger">
+					Simple tag to easly crop and reveal some contents. The display style is totaly up to you... <br>
+					<strong class="strong">Resize your window if you don't see the effect...</strong>
+				</p>
+				<s-read-more more="More..." less="Less..." threshold="100">
+					<p class="p m-b">
+						Nulla tincidunt convallis vehicula. Morbi molestie, arcu eleifend elementum faucibus, sapien diam faucibus sem, ac commodo metus dolor eget odio. Suspendisse et nulla lectus. Mauris facilisis, nulla in maximus lacinia, justo nisi dapibus nibh, quis volutpat neque nulla in ipsum. Pellentesque fermentum lectus eros, nec interdum nisi porttitor non. Suspendisse.
 					</p>
-					<s-read-more more="More..." less="Less..." threshold="100">
-						<p class="p m-b">
-							Nulla tincidunt convallis vehicula. Morbi molestie, arcu eleifend elementum faucibus, sapien diam faucibus sem, ac commodo metus dolor eget odio. Suspendisse et nulla lectus. Mauris facilisis, nulla in maximus lacinia, justo nisi dapibus nibh, quis volutpat neque nulla in ipsum. Pellentesque fermentum lectus eros, nec interdum nisi porttitor non. Suspendisse.
-						</p>
-						<p class="p m-b">
-							Nulla tincidunt convallis vehicula. Morbi molestie, arcu eleifend elementum faucibus, sapien diam faucibus sem, ac commodo metus dolor eget odio. Suspendisse et nulla lectus. Mauris facilisis, nulla in maximus lacinia, justo nisi dapibus nibh, quis volutpat neque nulla in ipsum. Pellentesque fermentum lectus eros, nec interdum nisi porttitor non. Suspendisse.
-						</p>
-						<p class="p m-b">
-							Nulla tincidunt convallis vehicula. Morbi molestie, arcu eleifend elementum faucibus, sapien diam faucibus sem, ac commodo metus dolor eget odio. Suspendisse et nulla lectus. Mauris facilisis, nulla in maximus lacinia, justo nisi dapibus nibh, quis volutpat neque nulla in ipsum. Pellentesque fermentum lectus eros, nec interdum nisi porttitor non. Suspendisse.
-						</p>
-					</s-read-more>
-				</div>
+					<p class="p m-b">
+						Nulla tincidunt convallis vehicula. Morbi molestie, arcu eleifend elementum faucibus, sapien diam faucibus sem, ac commodo metus dolor eget odio. Suspendisse et nulla lectus. Mauris facilisis, nulla in maximus lacinia, justo nisi dapibus nibh, quis volutpat neque nulla in ipsum. Pellentesque fermentum lectus eros, nec interdum nisi porttitor non. Suspendisse.
+					</p>
+					<p class="p m-b">
+						Nulla tincidunt convallis vehicula. Morbi molestie, arcu eleifend elementum faucibus, sapien diam faucibus sem, ac commodo metus dolor eget odio. Suspendisse et nulla lectus. Mauris facilisis, nulla in maximus lacinia, justo nisi dapibus nibh, quis volutpat neque nulla in ipsum. Pellentesque fermentum lectus eros, nec interdum nisi porttitor non. Suspendisse.
+					</p>
+					<p class="p m-b">
+						Nulla tincidunt convallis vehicula. Morbi molestie, arcu eleifend elementum faucibus, sapien diam faucibus sem, ac commodo metus dolor eget odio. Suspendisse et nulla lectus. Mauris facilisis, nulla in maximus lacinia, justo nisi dapibus nibh, quis volutpat neque nulla in ipsum. Pellentesque fermentum lectus eros, nec interdum nisi porttitor non. Suspendisse.
+					</p>
+					<p class="p m-b">
+						Nulla tincidunt convallis vehicula. Morbi molestie, arcu eleifend elementum faucibus, sapien diam faucibus sem, ac commodo metus dolor eget odio. Suspendisse et nulla lectus. Mauris facilisis, nulla in maximus lacinia, justo nisi dapibus nibh, quis volutpat neque nulla in ipsum. Pellentesque fermentum lectus eros, nec interdum nisi porttitor non. Suspendisse.
+					</p>
+					<p class="p m-b">
+						Nulla tincidunt convallis vehicula. Morbi molestie, arcu eleifend elementum faucibus, sapien diam faucibus sem, ac commodo metus dolor eget odio. Suspendisse et nulla lectus. Mauris facilisis, nulla in maximus lacinia, justo nisi dapibus nibh, quis volutpat neque nulla in ipsum. Pellentesque fermentum lectus eros, nec interdum nisi porttitor non. Suspendisse.
+					</p>
+					<p class="p m-b">
+						Nulla tincidunt convallis vehicula. Morbi molestie, arcu eleifend elementum faucibus, sapien diam faucibus sem, ac commodo metus dolor eget odio. Suspendisse et nulla lectus. Mauris facilisis, nulla in maximus lacinia, justo nisi dapibus nibh, quis volutpat neque nulla in ipsum. Pellentesque fermentum lectus eros, nec interdum nisi porttitor non. Suspendisse.
+					</p>
+				</s-read-more>
 			`
 		},
 		css : {
 			language : 'sass',
 			data : `
 				@import 'node_modules/coffeekraken-sugar/index';
+				@import 'node_modules/coffeekraken-s-typography-component/index';
 				@include s-init();
 				@include s-classes();
 				@include s-typography-classes();
-				.container {
-					@include s-position(absolute, middle, center);
-					min-width:80vw;
+				body {
+					padding: s-space(big);
 				}
 				s-read-more {
 					overflow: hidden;
