@@ -29,6 +29,8 @@
 
 Simple tag to easly crop and reveal some contents. The display style is totaly up to you...
 
+[![View demo](http://components.coffeekraken.io/assets/img/view-demo.png)](http://components.coffeekraken.io/app/s-read-more-component)
+
 ## Table of content
 
 1. **[Demo](http://components.coffeekraken.io/app/s-read-more-component)**
